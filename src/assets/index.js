@@ -7,6 +7,11 @@ import facebook from "./facebook.svg";
 import instagram from "./instagram.svg";
 import linkedin from "./linkedin.svg";
 import twitter from "./twitter.svg";
+import account from "./account.svg";
+import app from "./app.svg";
+import google from "./google.svg";
+import apple from "./apple.svg";
+import tick from "./tick.svg";
 
 export {
   logo,
@@ -18,4 +23,9 @@ export {
   instagram,
   linkedin,
   twitter,
+  account,
+  app,
+  google,
+  apple,
+  tick,
 };
