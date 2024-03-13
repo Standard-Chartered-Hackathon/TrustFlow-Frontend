@@ -87,13 +87,13 @@ function Tutorial({ onContinue }) {
         <div className="flex flex-col items-center">
           <Image src={correct} alt="correct" />
           <Image src={correcticon} alt="correcticon" />
-          <div className="font-poppins">Correct Upload</div>
+          <div className="font-poppins ">Correct Upload</div>
         </div>
 
         <div className="flex flex-col items-center">
           <Image src={incorrect} alt="incorrect" />
           <Image src={incorrecticon} alt="incorrecticon" />
-          <div className="font-poppins">Incorrect Upload</div>
+          <div className="font-poppins ">Incorrect Upload</div>
         </div>
       </div>
     </div>
