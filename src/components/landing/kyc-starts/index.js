@@ -6,7 +6,7 @@ import { landingData } from "../../../../public/const/constants";
 
 export default function KYCStarts() {
   return (
-    <div className="flex min-h-screen w-full items-center sm:items-start sm:pt-[6rem] sm:justify-between max-sm:flex-col justify-start font-medium lg:px-[8rem] sm:px-[4rem]">
+    <div className="flex min-h-screen w-full items-center sm:items-start sm:pt-[6rem] sm:justify-between max-sm:flex-col justify-start font-medium lg:px-[5rem] sm:px-[3rem]">
       <div className="flex justify-center items-start flex-col lg:w-3/5 sm:w-2/3 z-10">
         <h2 className="text-9xl tracking-wider font-semibold lineUp text-Text-Black max-md:">
           KYC

@@ -12,6 +12,14 @@ module.exports = {
         blue: "#2071EE",
         "Text-Grey-Light": "#979DAA",
         "Text-Black": "#1A191E",
+        blueBg: "#EFF7FF",
+        // customRed: "#FF0000", // Example custom color
+        // customBlue: {
+        //   50: "#E3F2FD",
+        //   100: "#BBDEFB",
+        //   // Add more shades as needed
+        // },
+
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
