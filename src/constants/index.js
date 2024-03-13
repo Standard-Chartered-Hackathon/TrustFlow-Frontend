@@ -1,4 +1,15 @@
-import { facebook, instagram, linkedin, twitter, send } from "../assets";
+import {
+  facebook,
+  instagram,
+  linkedin,
+  twitter,
+  icon1,
+  icon2,
+  icon3,
+  icon4,
+  icon5,
+  icon6,
+} from "../assets";
 
 export const navLinks = [
   {
@@ -195,3 +206,83 @@ export const socialMedia = [
 //     logo: dropbox,
 //   },
 // ];
+
+export const landingData = [
+  "Instant Transfer",
+  "Payments worldwide",
+  "Saving accounts",
+  "100% mobile banking",
+];
+
+export const jsonData = [
+  {
+    icon: icon1,
+    title: "Instant KYC",
+    desc: "Instant KYC can be done with the help of trustflow",
+  },
+  {
+    icon: icon2,
+    title: "Saving accounts",
+    desc: "Start growing your wealth today with secure and tailored savings options.",
+  },
+  {
+    icon: icon3,
+    title: "Mobile banking",
+    desc: "Bank on with our mobile banking app financial control right at your fingertips.",
+  },
+  {
+    icon: icon4,
+    title: "Advanced statistics",
+    desc: "Dive into a realm of insights with advanced statistics, understanding of trends and patterns",
+  },
+  {
+    icon: icon5,
+    title: "Virtual cards",
+    desc: "Empower transactions with virtual cards - secure, and tailored for the digital age.",
+  },
+  {
+    icon: icon6,
+    title: "Contactless",
+    subtitle: "Payment",
+    desc: "Tap and go for a seamless and efficient way to manage your purchases.",
+  },
+];
+
+export const money = [
+  "Instant Transfer",
+  "Payments worldwide",
+  "Saving accounts",
+];
+
+export const sendReceive = [
+  {
+    title: "Apple",
+    subtitle: "Macbook",
+    amount: "15200",
+  },
+  {
+    title: "Amazon",
+    subtitle: "Electronics",
+    amount: "12100",
+  },
+  {
+    title: "Twitter",
+    subtitle: "Ads",
+    amount: "11200",
+  },
+  {
+    title: "Microsoft",
+    subtitle: "Office Suite",
+    amount: "1200000",
+  },
+  {
+    title: "Dropbox",
+    subtitle: "Cloud",
+    amount: "12200",
+  },
+  {
+    title: "Paypal",
+    subtitle: "Shopping",
+    amount: "152",
+  },
+];

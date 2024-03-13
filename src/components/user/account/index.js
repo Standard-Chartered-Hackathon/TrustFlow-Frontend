@@ -7,10 +7,10 @@ const inter = Inter({ subsets: ["latin"] });
 export default function Account() {
   return (
     <div className="flex flex-col justify-center items-center p-10 rounded-xl h-auto py-20">
-      <h1 className="text-center text-4xl font-bold mb-6 font-inter">
+      <h1 className="text-center text-4xl md:text-5xl font-bold mb-6 font-inter">
         Perfect Card <br /> for your needs.
       </h1>
-      <p className="max-w-[600px] font-inter">
+      <p className="max-w-[600px] font-poppins">
         Discover perfection in every swipe with our card tailored to meet your
         unique needs. Elevate your experience with the perfect card for seamless
         transactions.
@@ -21,10 +21,10 @@ export default function Account() {
         className="w-96 h-80 mt-8 object-contain"
       />
       <div className="mt-8 space-x-4">
-        <button className="px-4 sm:px-6 py-3 font-inter bg-blue hover:bg-lightBg text-white hover:text-black rounded-lg focus:outline-none focus:ring focus:ring-blue-300">
+        <button className="px-4 sm:px-6 py-3 font-poppins bg-blue hover:bg-lightBg text-white hover:text-black rounded-lg focus:outline-none focus:ring focus:ring-blue-300">
           Open Account
         </button>
-        <button className="px-4 sm:px-6 py-3 font-inter bg-lightBg hover:bg-blue text-black hover:text-white rounded-lg focus:outline-none focus:ring focus:ring-gray-500">
+        <button className="px-4 sm:px-6 py-3 font-poppins bg-lightBg hover:bg-blue text-black hover:text-white rounded-lg focus:outline-none focus:ring focus:ring-gray-500">
           Compare Prices
         </button>
       </div>
