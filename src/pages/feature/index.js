@@ -1,5 +1,5 @@
 import React from "react";
-import { ip } from "@/assets/Logo.svg";
+// import { ip } from "@/assets/Logo.svg";
 import Link from "next/link";
 
 export default function Feature() {
@@ -10,7 +10,7 @@ export default function Feature() {
           How?
         </h2>
         <h2 className="text-7xl tracking-wide font-semibold text-Text-Black max-md:text-4xl">
-          Live Photograph  
+          Live Photograph
         </h2>
 
         <div className="text-[#979daa] shadow-md border border-Text-Grey-Light rounded-xl p-6 w-full flex flex-col justify-start items-start mt-10">
@@ -21,7 +21,7 @@ export default function Feature() {
           <p className=" tracking-[-0.10px]">
             Click a live photo aligning your face in the frame. Ensure good
             lighting for accuracy.
-            
+
           </p>
 
           <p className="tracking-[-0.10px]">Quick Review:</p>
@@ -54,7 +54,7 @@ export default function Feature() {
         </div>
       </section>
 
-      <section className="w-2/5 flex flex-row justify-center items-center gap-12">
+      {/* <section className="w-2/5 flex flex-row justify-center items-center gap-12">
         <div>
           <img className="" alt="Iphone pro black" src={ip} />
           <div className="">Correct Upload</div>
@@ -64,7 +64,7 @@ export default function Feature() {
           <img className="" alt="Iphone pro black" src={ip} />
           <div className="">Correct Upload</div>
         </div>
-      </section>
+      </section> */}
     </div>
   );
 }
