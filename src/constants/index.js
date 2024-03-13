@@ -286,3 +286,43 @@ export const sendReceive = [
     amount: "152",
   },
 ];
+
+export const faceVerificationGuide = [
+  {
+    step: "1. Snap & Align:",
+    description:
+      "Click a live photo aligning your face in the frame. Ensure good lighting for accuracy.",
+  },
+  {
+    step: "2. Quick Review:",
+    description: "Review the photo and retake if needed for a clear shot.",
+  },
+  {
+    step: "3. Let Tech Work:",
+    description:
+      "Our tech analyzes facial features. Smile – you're almost there!",
+  },
+  {
+    step: "4. Access Granted:",
+    description:
+      "Immediate feedback! Enjoy seamless access upon successful face verification. Ready to dive in.",
+  },
+];
+
+export const captureImageGuide = [
+  {
+    step: "1. Prepare Your Pose:",
+    description:
+      "Stand or sit in a well-lit area and decide on your desired pose or expression.",
+  },
+  {
+    step: "2. Open Camera App:",
+    description:
+      "Unlock your device and open the camera app. Ensure the camera is set to the photo mode.",
+  },
+  {
+    step: "3. Snap and Review:",
+    description:
+      "Aim the camera, align yourself in the frame, and tap the shutter button. After the capture, quickly review and retake if necessary for that picture-perfect shot!",
+  },
+];

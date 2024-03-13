@@ -21,6 +21,10 @@ import icon4 from "./icon4.svg";
 import icon5 from "./icon5.svg";
 import icon6 from "./icon6.svg";
 import icon from "./icon.svg";
+import correct from "./correct.svg";
+import incorrect from "./incorrect.svg";
+import correcticon from "./correcticon.svg";
+import incorrecticon from "./incorrecticon.svg";
 
 export {
   logo,
@@ -46,4 +50,8 @@ export {
   icon5,
   icon6,
   icon,
+  correct,
+  incorrect,
+  correcticon,
+  incorrecticon,
 };
