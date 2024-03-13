@@ -11,6 +11,7 @@ module.exports = {
         "Text-Grey-Light": "#979DAA",
         "Text-Black": "#1A191E",
         blue: "#2071EE",
+        blueBg: "#EFF7FF",
         // customRed: "#FF0000", // Example custom color
         // customBlue: {
         //   50: "#E3F2FD",

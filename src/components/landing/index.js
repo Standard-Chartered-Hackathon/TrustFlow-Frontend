@@ -6,10 +6,10 @@ import KYCStarts from "./kyc-starts";
 
 export default function LandingPage() {
   return (
-    <>
-      <KYCStarts />
-      <OneApp />
+    <div className="px-[1rem]">
+      {/* <KYCStarts />
+      <OneApp /> */}
       <SendReceive />
-    </>
+    </div>
   );
 }
