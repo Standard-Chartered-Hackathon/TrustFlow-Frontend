@@ -13,6 +13,8 @@ module.exports = {
         "Text-Grey-Light": "#979DAA",
         "Text-Black": "#1A191E",
         blueBg: "#EFF7FF",
+        inputBg: "#F4F4F6",
+        greyText: "#979DAA",
       },
       fontFamily: {
         poppins: ["Poppins", "sans-serif"],
