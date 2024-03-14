@@ -1,8 +1,46 @@
+import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { logo } from "../assets";
 
 export default function Login() {
+  const [accountNumber, setAccountNumber] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    // Make POST request to API
+    try {
+      const response = await fetch(
+        "https://trustflow-backend.onrender.com/v1/userAuth",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ accountNumber, password }),
+        }
+      );
+      const data = await response.json();
+      console.log(data);
+
+      if (data.success) {
+        // Save userId to local storage
+        localStorage.setItem("userId", data.userData.userId);
+        localStorage.setItem("isKYC", data.userData.isKYC);
+
+        // Redirect user to /user route
+        window.location.href = "/user";
+      } else {
+        setError("Wrong credentials. Please try again.");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  };
+
   return (
     <>
       <div className="hidden md:flex flex-row h-screen">
@@ -38,11 +76,17 @@ export default function Login() {
           </h2>
           <form className="mt-6">
             <div className="mb-2">
-              <label htmlFor="email" className="block text-sm font-semibold">
+              <label
+                htmlFor="accountNumber"
+                className="block text-sm font-semibold"
+              >
                 Account number
               </label>
               <input
-                type="email"
+                type="text"
+                id="accountNumber"
+                value={accountNumber}
+                onChange={(e) => setAccountNumber(e.target.value)}
                 className="block w-full px-4 py-2 mt-2 bg-white border rounded-full shadow-md focus:border-gray-400 focus:ring-gray-300 focus:outline-none focus:ring focus:ring-opacity-40"
                 style={{ minWidth: "300px" }}
               />
@@ -53,12 +97,19 @@ export default function Login() {
               </label>
               <input
                 type="password"
+                id="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 className="block w-full px-4 py-2 mt-2 bg-white border rounded-full shadow-md focus:border-gray-400 focus:ring-gray-300 focus:outline-none focus:ring focus:ring-opacity-40"
                 style={{ minWidth: "300px" }}
               />
             </div>
             <div className="flex flex-col justify-center items-center mt-8">
-              <button className="w-full max-w-[300px] px-4 py-4 tracking-wide text-white bg-blue rounded-full focus:outline-none">
+              <button
+                className="w-full max-w-[300px] px-4 py-4 tracking-wide text-white bg-blue rounded-full focus:outline-none "
+                type="submit "
+                onClick={handleSubmit}
+              >
                 Login
               </button>
               <Link href="/" className="text-xs mt-2 hover:underline">
@@ -90,13 +141,16 @@ export default function Login() {
             <form className="mt-6">
               <div className="mb-2">
                 <label
-                  htmlFor="email"
+                  htmlFor="accountNumber"
                   className="block text-sm font-semibold text-white"
                 >
                   Account number
                 </label>
                 <input
-                  type="email"
+                  type="text"
+                  id="accountNumber"
+                  value={accountNumber}
+                  onChange={(e) => setAccountNumber(e.target.value)}
                   className="block w-full px-4 py-2 mt-2 bg-white border rounded-full focus:border-gray-400 focus:ring-gray-300 focus:outline-none focus:ring focus:ring-opacity-40"
                   style={{ minWidth: "300px" }}
                 />
@@ -110,12 +164,19 @@ export default function Login() {
                 </label>
                 <input
                   type="password"
+                  id="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                   className="block w-full px-4 py-2 mt-2 bg-white border rounded-full focus:border-gray-400 focus:ring-gray-300 focus:outline-none focus:ring focus:ring-opacity-40"
                   style={{ minWidth: "300px" }}
                 />
               </div>
               <div className="flex flex-col justify-center items-center mt-8">
-                <button className="w-full max-w-[300px] px-4 py-2.5 tracking-wide text-white bg-blue rounded-full focus:outline-none">
+                <button
+                  className="w-full max-w-[300px] px-4 py-2.5 tracking-wide text-white bg-blue rounded-full focus:outline-none"
+                  type="submit "
+                  onClick={handleSubmit}
+                >
                   Login
                 </button>
                 <Link
@@ -129,6 +190,8 @@ export default function Login() {
           </div>
         </div>
       </div>
+      {/* Error message */}
+      {error && <p className="text-red-500">{error}</p>}
     </>
   );
 }

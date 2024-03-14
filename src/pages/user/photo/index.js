@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { captureImageGuide, faceVerificationGuide } from "../../../constants";
+import axios from "axios";
 import {
   correct,
   correcticon,
@@ -101,7 +102,6 @@ function Tutorial({ onContinue }) {
     </div>
   );
 }
-
 function Livephoto() {
   const router = useRouter();
 
@@ -111,6 +111,8 @@ function Livephoto() {
   const [showError, setShowError] = useState(false);
   const [showConfetti, setShowConfetti] = useState(false);
 
+  const [kycVerified, setKycVerified] = useState(false);
+
   const handleImageCapture = (imageData) => {
     setFormData({ ...formData, userImage: imageData });
   };
@@ -119,39 +121,27 @@ function Livephoto() {
     e.preventDefault();
     const userId = localStorage.getItem("userId");
     try {
-      const response = await axios.post(
-        // `http://localhost:3000/v1/userAuth/checkUserData/${userId}`,
-        `https://trustflow-backend.onrender.com/v1/userAuth/checkUserData/0001`,
+      const response = await axios.patch(
+        `https://trustflow-backend.onrender.com/v1/userAuth/updateKYC/${userId}`,
         {
-          username: formData.name,
-          dateOfBirth: formData.dob,
-          aadhaarCardNo: formData.aadharNumber,
-          panCardNo: formData.panNumber,
-          //   imgUrl: formData.userImage,
+          isKYC: true,
         }
       );
       console.log(response);
       if (response.data.success === true) {
+        localStorage.setItem("isKYC", "true");
+        setKycVerified(true);
         setShowConfetti(true); // Show confetti on success
         setTimeout(() => {
           router.push("/user");
         }, 2000); // Redirect after 2 seconds
       } else {
-        setShowError(true);
+        localStorage.setItem("isKYC", "false");
+        alert("KYC failed. Please try again.");
       }
-      setFormData({
-        name: "",
-        dob: "",
-        address: "",
-        annualIncome: "",
-        aadharNumber: "",
-        panNumber: "",
-        signature: null,
-        userImage: userImage,
-      });
     } catch (error) {
       setShowError(true);
-      console.error("Error submitting KYC data:", error);
+      console.error("Error updating KYC:", error);
     }
   };
 
@@ -162,6 +152,7 @@ function Livephoto() {
           Take a photo
         </h2>
 
+        {/* Your capture image guide here */}
         <div className="font-poppins shadow-md bg-lightBg rounded-xl p-6 w-full flex flex-col justify-start items-start mt-2">
           <p className="text-black font-bold">
             Capture a Perfect Photo in 3 Simple Steps:
@@ -181,14 +172,18 @@ function Livephoto() {
           <CameraComponent onCapture={handleImageCapture} />
         </div>
 
-        <div className="flex justify-center items-center">
-          <button
-            onClick={handleSubmit}
-            className="px-4 sm:px-6 py-3 mt-4 font-poppins bg-blue shadow-md text-white hover:text-black rounded-lg focus:outline-none focus:ring focus:ring-blue-300"
-          >
-            Submit your KYC
-          </button>
-        </div>
+        {kycVerified ? (
+          <KYCDone />
+        ) : (
+          <div className="flex justify-center items-center">
+            <button
+              onClick={handleSubmit}
+              className="px-4 sm:px-6 py-3 mt-6 font-poppins bg-blue shadow-md text-white hover:text-black rounded-lg focus:outline-none focus:ring focus:ring-blue-300"
+            >
+              Submit your KYC
+            </button>
+          </div>
+        )}
       </div>
 
       <div className="w-1/2 flex flex-row justify-end items-center gap-12 max-sm:hidden">
@@ -215,3 +210,9 @@ function Livephoto() {
     </div>
   );
 }
+
+const KYCDone = () => (
+  <div className="flex justify-center items-center text-2xl font-bold text-green-500">
+    KYC Verified!
+  </div>
+);
