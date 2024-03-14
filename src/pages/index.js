@@ -106,7 +106,8 @@ export default function Login() {
                 style={{ minWidth: "300px" }}
               />
             </div>
-            <div className="flex flex-col justify-center items-center mt-8">
+            {error && <p className="text-red-500 mt-4">{error}</p>}
+            <div className="flex flex-col justify-center items-center mt-6">
               <button
                 className="w-full max-w-[300px] px-4 py-4 tracking-wide text-white bg-blue rounded-full focus:outline-none "
                 type="submit "
@@ -173,7 +174,8 @@ export default function Login() {
                   style={{ minWidth: "300px" }}
                 />
               </div>
-              <div className="flex flex-col justify-center items-center mt-8">
+              {error && <p className="text-red-500 mt-4">{error}</p>}
+              <div className="flex flex-col justify-center items-center mt-6">
                 <button
                   className="w-full max-w-[300px] px-4 py-2.5 tracking-wide text-white bg-blue rounded-full focus:outline-none"
                   type="submit "
@@ -192,8 +194,6 @@ export default function Login() {
           </div>
         </div>
       </div>
-      {/* Error message */}
-      {error && <p className="text-red-500">{error}</p>}
     </>
   );
 }
