@@ -33,9 +33,9 @@ export default function KYC() {
         </div>
 
         <div className="mt-8 space-x-4">
-          <Link href="/user">
+          <Link href="/user/kyc">
             <button className="px-4 sm:px-6 py-3 font-inter bg-blue shadow-md text-white hover:text-black rounded-lg focus:outline-none focus:ring focus:ring-blue-300">
-              Open Account
+              Online KYC
             </button>
           </Link>
 

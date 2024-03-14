@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
+import { Inter } from "next/font/google";
+
+const inter = Inter({ subsets: ["latin"] });
 
 export default function KycPage() {
   const router = useRouter();
@@ -65,20 +68,20 @@ export default function KycPage() {
   };
 
   return (
-    <div className="flex justify-center w-full px-[2rem] xl:px-[4rem]  min-h-[90vh] py-[2rem]">
+    <div className="flex justify-center w-full px-[2rem] xl:px-[4rem] min-h-[90vh] py-[2rem]">
       <form
         onSubmit={handleSubmit}
         className="flex flex-col h-full w-full gap-y-10"
       >
-        <h2 className="text-5xl md:text-6xl font-semibold text-Text-Black font-inter">
+        <h2 className="text-5xl md:text-6xl font-bold text-Text-Black font-inter">
           Details
         </h2>
         <section className="h-full flex flex-col lg:flex-row justify-evenly items-center gap-4 w-full">
-          <div className="grid grid-cols-1 gap-x-10 gap-y-4 md:gap-y-12  max-md:justify-items-center md:grid-cols-2 w-full lg:w-[75vw]">
+          <div className="grid grid-cols-1 gap-x-10 gap-y-4 md:gap-y-12 max-md:justify-items-center md:grid-cols-2 w-full lg:w-[75vw]">
             <div className="flex flex-col gap-y-1">
               <label
                 htmlFor="name"
-                className="text-lg font-semibold text-Text-Black"
+                className="font-semibold text-Text-Black font-poppins"
               >
                 Name
               </label>
@@ -89,14 +92,14 @@ export default function KycPage() {
                 value={formData.name}
                 onChange={handleChange}
                 required
-                className="input-field bg-inputBg text-lg p-3 rounded-xl w-72 md:w-[350px] lg:w-80 xl:w-96  shadow-sm"
+                className="input-field bg-inputBg p-3 rounded-xl w-72 md:w-[350px] lg:w-80 xl:w-96 shadow-md font-poppins"
                 placeholder="Enter your name"
               />
             </div>
             <div className="flex flex-col gap-y-1">
               <label
                 htmlFor="dob"
-                className="text-lg font-semibold text-Text-Black"
+                className="font-semibold text-Text-Black font-poppins"
               >
                 Date of Birth
               </label>
@@ -107,14 +110,14 @@ export default function KycPage() {
                 value={formData.dob}
                 onChange={handleChange}
                 required
-                className="input-field bg-inputBg text-lg p-3 rounded-xl w-72 md:w-[350px] lg:w-80 xl:w-96  shadow-md"
+                className="input-field bg-inputBg p-3 rounded-xl w-72 md:w-[350px] lg:w-80 xl:w-96 shadow-md font-poppins"
                 placeholder="Select your date of birth"
               />
             </div>
             <div className="flex flex-col gap-y-1">
               <label
                 htmlFor="aadharNumber"
-                className="text-lg font-semibold text-Text-Black"
+                className="font-semibold text-Text-Black font-poppins"
               >
                 Aadhar Number
               </label>
@@ -125,14 +128,14 @@ export default function KycPage() {
                 value={formData.aadharNumber}
                 onChange={handleChange}
                 required
-                className="input-field bg-inputBg text-lg p-3 rounded-xl w-72 md:w-[350px] lg:w-80 xl:w-96  shadow-md"
+                className="input-field bg-inputBg p-3 rounded-xl w-72 md:w-[350px] lg:w-80 xl:w-96 shadow-md font-poppins"
                 placeholder="Enter your Aadhar number"
               />
             </div>
             <div className="flex flex-col gap-y-1">
               <label
                 htmlFor="panNumber"
-                className="text-lg font-semibold text-Text-Black"
+                className="font-semibold text-Text-Black font-poppins"
               >
                 PAN Number
               </label>
@@ -143,14 +146,14 @@ export default function KycPage() {
                 value={formData.panNumber}
                 onChange={handleChange}
                 required
-                className="input-field bg-inputBg text-lg p-3 rounded-xl w-72 md:w-[350px] lg:w-80 xl:w-96  shadow-md"
+                className="input-field bg-inputBg p-3 rounded-xl w-72 md:w-[350px] lg:w-80 xl:w-96 shadow-md font-poppins"
                 placeholder="Enter your PAN number"
               />
             </div>
             <div className="flex flex-col gap-y-1">
               <label
                 htmlFor="annualIncome"
-                className="text-lg font-semibold text-Text-Black"
+                className="font-semibold text-Text-Black font-poppins"
               >
                 Annual Income
               </label>
@@ -160,18 +163,39 @@ export default function KycPage() {
                 value={formData.annualIncome}
                 onChange={handleChange}
                 required
-                className="input-field bg-inputBg text-lg p-3 rounded-xl w-72 md:w-[350px] lg:w-80 xl:w-96  shadow-md"
+                className="input-field bg-inputBg p-3 rounded-xl w-72 md:w-[350px] lg:w-80 xl:w-96 shadow-md font-poppins"
               >
-                <option value="">Select annual income range</option>
-                <option value="0-500000">0 - 5,00,000</option>
-                <option value="500001-1000000">5,00,001 - 10,00,000</option>
+                <option value="" style={{ fontSize: "0.9rem" }}>
+                  Select annual income range
+                </option>
+                <option value="0-1,00,000" style={{ fontSize: "0.9rem" }}>
+                  0 - 5,00,000
+                </option>
+                <option
+                  value="1,00,001-5,00,000"
+                  style={{ fontSize: "0.9rem" }}
+                >
+                  0 - 5,00,000
+                </option>
+                <option
+                  value="5,00,001-10,00,000"
+                  style={{ fontSize: "0.9rem" }}
+                >
+                  5,00,001 - 10,00,000
+                </option>
+                <option
+                  value="10,00,001-20,00,000"
+                  style={{ fontSize: "0.9rem" }}
+                >
+                  5,00,001 - 10,00,000
+                </option>
                 {/* Add other options as needed */}
               </select>
             </div>
             <div className="flex flex-col gap-y-1">
               <label
                 htmlFor="employmentType"
-                className="text-lg font-semibold text-Text-Black"
+                className="font-semibold text-Text-Black font-poppins"
               >
                 Type of Employment
               </label>
@@ -181,20 +205,45 @@ export default function KycPage() {
                 value={formData.employmentType}
                 onChange={handleChange}
                 required
-                className="input-field bg-inputBg text-lg p-3 rounded-xl w-72 md:w-[350px] lg:w-80 xl:w-96  shadow-md"
+                className="input-field bg-inputBg p-3 rounded-xl w-72 md:w-[350px] lg:w-80 xl:w-96 shadow-md font-poppins"
               >
-                <option value="">Select employment type</option>
-                <option value="business">Business</option>
-                <option value="job">Job</option>
+                <option
+                  value=""
+                  className="font-poppins"
+                  style={{ fontSize: "0.9rem" }}
+                >
+                  Select employment type
+                </option>
+                <option
+                  value="business"
+                  className="font-poppins"
+                  style={{ fontSize: "0.9rem" }}
+                >
+                  Business
+                </option>
+                <option
+                  value="job"
+                  className="font-poppins"
+                  style={{ fontSize: "0.9rem" }}
+                >
+                  Job
+                </option>
+                <option
+                  value="job"
+                  className="font-poppins"
+                  style={{ fontSize: "0.9rem" }}
+                >
+                  Self Employed
+                </option>
                 {/* Add other options as needed */}
               </select>
             </div>
           </div>
-          <div className="h-full w-full lg:w-[25vw] flex lg:flex-col gap-10 flex-col md:flex-row items-center max-lg:mt-10">
+          <div className="h-full w-full lg:w-[25vw] flex lg:flex-col gap-6 md:gap-10 flex-col md:flex-row items-center">
             <div className="flex flex-col gap-y-1">
               <label
                 htmlFor="signature"
-                className="text-lg font-semibold text-Text-Black"
+                className="font-semibold text-Text-Black font-poppins"
               >
                 Signature
               </label>
@@ -204,7 +253,7 @@ export default function KycPage() {
                 name="signature"
                 id="signature"
                 onChange={handleSignatureChange}
-                className="input-field bg-inputBg text-lg p-3 rounded-xl w-72 md:w-[350px] lg:w-80 xl:w-96  shadow-md"
+                className="input-field bg-inputBg p-3 rounded-xl w-72 md:w-[350px] lg:w-80 xl:w-96 shadow-md font-poppins"
               />
               {formData.signature && (
                 <img
@@ -214,7 +263,7 @@ export default function KycPage() {
                 />
               )}
             </div>
-            <div className="w-full flex lg:justify-end justify-center ">
+            <div className="w-full flex justify-center">
               <button
                 type="submit"
                 className="px-4 w-64 md:px-6 py-3 font-inter bg-blue shadow-md text-white hover:text-black rounded-lg focus:outline-none focus:ring focus:ring-blue-300"
