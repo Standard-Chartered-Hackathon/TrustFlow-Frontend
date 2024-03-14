@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { logo } from "../assets";
+import Credentials from "@/components/CredentialComponent";
 
 export default function Login() {
   const [accountNumber, setAccountNumber] = useState("");
@@ -43,6 +44,7 @@ export default function Login() {
 
   return (
     <>
+      {/* <Credentials /> */}
       <div className="hidden md:flex flex-row h-screen">
         <div
           className="flex flex-col h-screen w-3/5 justify-center items-center relative"
@@ -64,7 +66,7 @@ export default function Login() {
           </p>
         </div>
 
-        <div className="flex flex-col w-full p-6 lg:max-w-xl justify-center items-center">
+        <div className="flex flex-col w-full p-6 lg:max-w-xl justify-center items-center z-10">
           <Image
             src={logo}
             alt="hoobank"
