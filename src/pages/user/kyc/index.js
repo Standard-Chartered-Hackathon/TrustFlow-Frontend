@@ -1,7 +1,13 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { useRouter } from "next/router";
 
 export default function KycPage() {
+  const router = useRouter();
+
+  // const [showSuccess, setShowSuccess] = useState(false);
+  const [showError, setShowError] = useState(false);
+
   const [formData, setFormData] = useState({
     name: "",
     dob: "",
@@ -26,7 +32,7 @@ export default function KycPage() {
     const userId = localStorage.getItem("userId");
     try {
       const response = await axios.post(
-        `https://trustflow-backend.onrender.com/v1/userAuth/checkUserData/${userId}`,
+        `https://trustflow-backend.onrender.com/v1/userAuth/checkUserData/0001`,
         {
           username: formData.name,
           dateOfBirth: formData.dob,
@@ -36,10 +42,15 @@ export default function KycPage() {
       );
       console.log(response);
       if (response.data.success === true) {
-        alert("KYC verified");
+        // setShowSuccess(true);
+        setTimeout(() => {
+          setShowSuccess(false);
+          router.push("/user/photo");
+        }, 2000); // Close the success popup after 2 seconds and navigate to /user
       } else {
-        alert("KYC failed. Incorrect details. Please try again.");
+        setShowError(true);
       }
+
       setFormData({
         name: "",
         dob: "",
@@ -214,6 +225,20 @@ export default function KycPage() {
           </div>
         </section>
       </form>
+      {/* Success Popup */}
+      {/* {showSuccess && (
+        <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-green-200 p-4 rounded-md">
+          <p className="text-green-700"></p>
+        </div>
+      )} */}
+      {/* Error Popup */}
+      {showError && (
+        <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-red-200 p-4 rounded-md">
+          <p className="text-red-700">
+            KYC failed. Incorrect details. Please try again.
+          </p>
+        </div>
+      )}
     </div>
   );
 }
