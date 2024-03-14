@@ -10,6 +10,8 @@ import {
 } from "../../../assets";
 import { Inter } from "next/font/google";
 import CameraComponent from "@/components/CameraComponent";
+import { useRouter } from "next/router";
+import Confetti from "react-confetti";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -31,7 +33,7 @@ export default function KYCProcess() {
 
 function Tutorial({ onContinue }) {
   return (
-    <div className="min-h-screen w-full flex justify-start items-center gap-4 md:px-12 ">
+    <div className="min-h-[90vh] w-full flex justify-start items-center gap-4 md:px-12">
       <div className="w-full md:w-1/2 flex flex-col gap-4">
         <h2 className="text-4xl md:text-5xl font-bold text-Text-Black font-inter">
           How?
@@ -58,7 +60,7 @@ function Tutorial({ onContinue }) {
           </div>
         </div>
 
-        <div className="font-poppins shadow-md bg-lightBg rounded-xl p-6 w-full flex flex-col justify-start items-start mt-10">
+        <div className="font-poppins shadow-md bg-lightBg rounded-xl p-6 w-full flex flex-col justify-start items-start mt-6">
           <p className="text-black font-bold">
             Quick Face Verification Guide in 4 Steps
           </p>
@@ -76,7 +78,7 @@ function Tutorial({ onContinue }) {
         <div className="flex justify-center items-center">
           <button
             onClick={onContinue}
-            className="px-4 sm:px-6 py-3 mt-6 font-poppins bg-blue shadow-md text-white hover:text-black rounded-lg focus:outline-none focus:ring focus:ring-blue-300"
+            className="px-4 sm:px-6 py-3 mt-4 font-poppins bg-blue shadow-md text-white hover:text-black rounded-lg focus:outline-none focus:ring focus:ring-blue-300"
           >
             Continue
           </button>
@@ -101,9 +103,13 @@ function Tutorial({ onContinue }) {
 }
 
 function Livephoto() {
+  const router = useRouter();
+
   const [formData, setFormData] = useState({
     userImage: null,
   });
+  const [showError, setShowError] = useState(false);
+  const [showConfetti, setShowConfetti] = useState(false);
 
   const handleImageCapture = (imageData) => {
     setFormData({ ...formData, userImage: imageData });
@@ -126,9 +132,12 @@ function Livephoto() {
       );
       console.log(response);
       if (response.data.success === true) {
-        alert("KYC verified");
+        setShowConfetti(true); // Show confetti on success
+        setTimeout(() => {
+          router.push("/user");
+        }, 2000); // Redirect after 2 seconds
       } else {
-        alert("KYC failed. Incorrect details. Please try again.");
+        setShowError(true);
       }
       setFormData({
         name: "",
@@ -141,18 +150,19 @@ function Livephoto() {
         userImage: userImage,
       });
     } catch (error) {
+      setShowError(true);
       console.error("Error submitting KYC data:", error);
     }
   };
 
   return (
-    <div className="min-h-screen w-full flex justify-start items-center gap-4 md:px-12 ">
+    <div className="min-h-[90vh] w-full flex justify-start items-center gap-4 md:px-12 ">
       <div className="w-full md:w-1/2 flex flex-col gap-4">
         <h2 className="text-4xl md:text-5xl font-bold text-Text-Black font-inter">
           Take a photo
         </h2>
 
-        <div className="font-poppins shadow-md bg-lightBg rounded-xl p-6 w-full flex flex-col justify-start items-start mt-6">
+        <div className="font-poppins shadow-md bg-lightBg rounded-xl p-6 w-full flex flex-col justify-start items-start mt-2">
           <p className="text-black font-bold">
             Capture a Perfect Photo in 3 Simple Steps:
           </p>
@@ -172,17 +182,36 @@ function Livephoto() {
         </div>
 
         <div className="flex justify-center items-center">
-          <Link href="/user">
-            <button className="px-4 sm:px-6 py-3 mt-6 font-poppins bg-blue shadow-md text-white hover:text-black rounded-lg focus:outline-none focus:ring focus:ring-blue-300">
-              Submit your KYC
-            </button>
-          </Link>
+          <button
+            onClick={handleSubmit}
+            className="px-4 sm:px-6 py-3 mt-4 font-poppins bg-blue shadow-md text-white hover:text-black rounded-lg focus:outline-none focus:ring focus:ring-blue-300"
+          >
+            Submit your KYC
+          </button>
         </div>
       </div>
 
       <div className="w-1/2 flex flex-row justify-end items-center gap-12 max-sm:hidden">
         <CameraComponent onCapture={handleImageCapture} />
       </div>
+
+      {/* Confetti */}
+      {showConfetti && (
+        <Confetti
+          width={window.innerWidth}
+          height={window.innerHeight}
+          recycle={false}
+        />
+      )}
+
+      {/* Error Popup */}
+      {showError && (
+        <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-red-200 p-4 rounded-md">
+          <p className="text-red-700">
+            KYC failed. Incorrect details. Please try again.
+          </p>
+        </div>
+      )}
     </div>
   );
 }

@@ -72,26 +72,38 @@ const CameraComponent = ({ onCapture }) => {
     }
   };
   return (
-    <div className="border border-gray-300 rounded-md p-4">
-      <div className="flex justify-center mb-4">
-        <button
-          onClick={startCamera}
-          className="btn-primary mr-2"
-          disabled={stream !== null}
-        >
-          Start Camera
-        </button>
-        <button onClick={stopCamera} className="btn-primary mr-2">
-          Stop Camera
-        </button>
-        <button onClick={captureImage} className="btn-primary">
-          Capture Image
-        </button>
+    <div className="border border-gray-500 rounded-md p-4">
+      <div className="flex flex-col justify-center">
+        <div className="flex justify-center">
+          <video ref={videoRef} autoPlay muted className="w-72 h-auto" />
+        </div>
+        <div className="flex flex-row">
+          <button
+            onClick={startCamera}
+            className="btn-primary mr-2 px-4 sm:px-6 py-2 mt-6 font-poppins bg-blue shadow-md text-white hover:text-black rounded-lg focus:outline-none focus:ring focus:ring-blue-300"
+            disabled={stream !== null}
+          >
+            Start
+          </button>
+          <button
+            onClick={stopCamera}
+            className="btn-primary mr-2 px-4 sm:px-6 py-2 mt-6 font-poppins bg-blue shadow-md text-white hover:text-black rounded-lg focus:outline-none focus:ring focus:ring-blue-300"
+          >
+            Stop
+          </button>
+          <button
+            onClick={captureImage}
+            className="btn-primary px-4 sm:px-6 py-2 mt-6 font-poppins bg-blue shadow-md text-white hover:text-black rounded-lg focus:outline-none focus:ring focus:ring-blue-300"
+          >
+            Capture
+          </button>
+        </div>
       </div>
-      <div className="flex justify-center">
-        <video ref={videoRef} autoPlay muted className="w-64 h-auto" />
+      <div className="flex items-center justify-center">
+        {uploadMessage && (
+          <p className="font-poppins mt-4 text-center">{uploadMessage}</p>
+        )}
       </div>
-      {uploadMessage && <p>{uploadMessage}</p>}
     </div>
   );
 };
