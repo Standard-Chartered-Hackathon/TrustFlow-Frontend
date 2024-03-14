@@ -2,13 +2,14 @@ import React, { useState } from "react";
 import { close, logo, menu } from "../../assets";
 import { navLinks } from "../../constants";
 import Image from "next/image";
+import Link from "next/link";
 
 const Navbar = () => {
   const [toggle, setToggle] = useState(false);
   return (
-    <nav className="w-full flex py-6 justify-between items-center navbar">
-      <Image src={logo} className="w-[124px] h-[32px]" />
-      <p className="text-blue">Trustflow</p>
+    <nav className="w-full flex py-6 justify-between items-center ml-8">
+      <Image src={logo} alt="logo" height={50} width={50} />
+      <p className="text-blue font-poppins">Trustflow</p>
 
       <ul className="list-none sm:flex hidden justify-end items-center flex-1 text-black">
         {navLinks.map((nav, index) => (
@@ -18,7 +19,8 @@ const Navbar = () => {
               index === navLinks.length - 1 ? "mr-0" : "mr-10"
             } text-black`}
           >
-            <a href={`${nav.link}`}>{nav.title}</a>
+            <Link href={`${nav.link}`} />
+            {nav.title}
           </li>
         ))}
       </ul>
@@ -48,7 +50,8 @@ const Navbar = () => {
                   index === navLinks.length - 1 ? "mr-0" : "mb-4"
                 } text-white`}
               >
-                <a href={`#${nav.link}`}>{nav.title}</a>
+                <Link href={`${nav.link}`} />
+                {nav.title}
               </li>
             ))}
           </ul>
