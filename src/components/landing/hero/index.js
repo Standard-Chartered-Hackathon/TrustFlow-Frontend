@@ -9,7 +9,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export default function KYC() {
   return (
-    <div className="flex min-h-screen w-full items-center sm:items-start sm:pt-[6rem] sm:justify-between max-sm:flex-col justify-start font-medium lg:px-[5rem] sm:px-[3rem]">
+    <div className="flex min-h-screen w-full items-center max-sm:py-10 sm:items-start sm:pt-[6rem] sm:justify-between max-sm:flex-col justify-start font-medium lg:px-[5rem] sm:px-[3rem]">
       <div className="flex justify-center items-start flex-col lg:w-3/5 sm:w-2/3 z-10">
         <h2 className="text-5xl md:text-7xl font-bold text-Text-Black font-inter">
           KYC

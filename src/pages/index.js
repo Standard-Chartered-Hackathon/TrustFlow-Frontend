@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { logo, accountnum, lock } from "../assets";
+import Credentials from "@/components/CredentialComponent";
 
 export default function Login() {
   const [accountNumber, setAccountNumber] = useState("");
@@ -43,6 +44,7 @@ export default function Login() {
 
   return (
     <>
+      {/* <Credentials /> */}
       <div className="hidden md:flex flex-row h-screen">
         <div
           className="flex flex-col h-screen w-3/5 justify-center items-center relative"
@@ -64,7 +66,7 @@ export default function Login() {
           </p>
         </div>
 
-        <div className="flex flex-col w-full p-6 lg:max-w-xl justify-center items-center">
+        <div className="flex flex-col w-full p-6 lg:max-w-xl justify-center items-center z-10">
           <Image
             src={logo}
             alt="hoobank"
@@ -104,7 +106,8 @@ export default function Login() {
                 style={{ minWidth: "300px" }}
               />
             </div>
-            <div className="flex flex-col justify-center items-center mt-8">
+            {error && <p className="text-red-500 mt-4">{error}</p>}
+            <div className="flex flex-col justify-center items-center mt-6">
               <button
                 className="w-full max-w-[300px] px-4 py-4 tracking-wide text-white bg-blue rounded-full focus:outline-none "
                 type="submit "
@@ -185,7 +188,8 @@ export default function Login() {
                   style={{ minWidth: "300px" }}
                 />
               </div>
-              <div className="flex flex-col justify-center items-center mt-8">
+              {error && <p className="text-red-500 mt-4">{error}</p>}
+              <div className="flex flex-col justify-center items-center mt-6">
                 <button
                   className="w-full max-w-[300px] px-4 py-2.5 tracking-wide text-white bg-blue rounded-full focus:outline-none"
                   type="submit "
@@ -204,8 +208,6 @@ export default function Login() {
           </div>
         </div>
       </div>
-      {/* Error message */}
-      {error && <p className="text-red-500">{error}</p>}
     </>
   );
 }

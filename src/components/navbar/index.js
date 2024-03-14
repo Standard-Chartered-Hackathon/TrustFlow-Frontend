@@ -9,9 +9,9 @@ const Navbar = () => {
   return (
     <nav className="w-full flex flex-wrap py-2 sm:py-6 justify-between items-center px-4 md:px-8 lg:px-16 xl:px-20 max-sm:bg-blue">
       {/* Logo and brand name */}
-      <div className="flex items-center">
+      <div className="flex items-center cursor-pointer">
         <Image src={logo} alt="logo" height={50} width={50} />
-        <p className="text-blue font-poppins ml-2">Trustflow</p>
+        <p className="text-blue text-2xl font-poppins ml-2">Trustflow</p>
       </div>
 
       {/* Desktop navigation */}
@@ -23,7 +23,7 @@ const Navbar = () => {
               index === navLinks.length - 1 ? "mr-0" : "mr-10"
             }`}
           >
-            <Link href={`${nav.link}`}>{nav.title}</Link>
+            <Link href={"/user"}>{nav.title} </Link>
           </li>
         ))}
       </ul>
@@ -49,7 +49,7 @@ const Navbar = () => {
                     index === navLinks.length - 1 ? "border-b" : ""
                   }`}
                 >
-                  <Link href={`${nav.link}`}>{nav.title} </Link>
+                  <Link href={"/user"}>{nav.title} </Link>
                 </li>
               ))}
             </ul>
