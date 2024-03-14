@@ -64,14 +64,13 @@ const CameraComponent = ({ onCapture }) => {
 
     try {
       const data = await s3.upload(params).promise();
-      console.log("File uploaded to S3:", data.Location);
-      return data.Location; // Return the S3 URL
+      console.log("File uploaded to S3:", data.key);
+      return data.key; // Return the S3 URL
     } catch (error) {
       console.error("Error uploading file to S3:", error);
       return null;
     }
   };
-
   return (
     <div className="border border-gray-300 rounded-md p-4">
       <div className="flex justify-center mb-4">

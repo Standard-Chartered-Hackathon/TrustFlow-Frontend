@@ -101,6 +101,50 @@ function Tutorial({ onContinue }) {
 }
 
 function Livephoto() {
+  const [formData, setFormData] = useState({
+    userImage: null,
+  });
+
+  const handleImageCapture = (imageData) => {
+    setFormData({ ...formData, userImage: imageData });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const userId = localStorage.getItem("userId");
+    try {
+      const response = await axios.post(
+        // `http://localhost:3000/v1/userAuth/checkUserData/${userId}`,
+        `https://trustflow-backend.onrender.com/v1/userAuth/checkUserData/0001`,
+        {
+          username: formData.name,
+          dateOfBirth: formData.dob,
+          aadhaarCardNo: formData.aadharNumber,
+          panCardNo: formData.panNumber,
+          //   imgUrl: formData.userImage,
+        }
+      );
+      console.log(response);
+      if (response.data.success === true) {
+        alert("KYC verified");
+      } else {
+        alert("KYC failed. Incorrect details. Please try again.");
+      }
+      setFormData({
+        name: "",
+        dob: "",
+        address: "",
+        annualIncome: "",
+        aadharNumber: "",
+        panNumber: "",
+        signature: null,
+        userImage: userImage,
+      });
+    } catch (error) {
+      console.error("Error submitting KYC data:", error);
+    }
+  };
+
   return (
     <div className="min-h-screen w-full flex justify-start items-center gap-4 md:px-12 ">
       <div className="w-full md:w-1/2 flex flex-col gap-4">
@@ -124,7 +168,7 @@ function Livephoto() {
         </div>
 
         <div className="w-64 mx-12 mt-6 flex flex-row justify-center items-center gap-12 sm:hidden">
-          <CameraComponent />
+          <CameraComponent onCapture={handleImageCapture} />
         </div>
 
         <div className="flex justify-center items-center">
@@ -137,7 +181,7 @@ function Livephoto() {
       </div>
 
       <div className="w-1/2 flex flex-row justify-end items-center gap-12 max-sm:hidden">
-        <CameraComponent />
+        <CameraComponent onCapture={handleImageCapture} />
       </div>
     </div>
   );
