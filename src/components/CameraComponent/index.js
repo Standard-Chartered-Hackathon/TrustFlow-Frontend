@@ -6,6 +6,7 @@ import axios from "axios";
 const CameraComponent = ({ onCapture }) => {
   const videoRef = useRef(null);
   const [stream, setStream] = useState(null);
+  const [capturedImage, setCapturedImage] = useState(null);
   const [uploadMessage, setUploadMessage] = useState("");
 
   const startCamera = async () => {
@@ -15,6 +16,7 @@ const CameraComponent = ({ onCapture }) => {
       });
       videoRef.current.srcObject = mediaStream;
       setStream(mediaStream);
+      setCapturedImage(null);
     } catch (error) {
       console.error("Error accessing camera:", error);
     }
@@ -33,24 +35,31 @@ const CameraComponent = ({ onCapture }) => {
     canvas.height = videoRef.current.videoHeight;
     canvas.getContext("2d").drawImage(videoRef.current, 0, 0);
     const imageData = canvas.toDataURL("image/png");
+    setCapturedImage(imageData);
     onCapture(imageData);
 
     // Call the function to upload the image to S3
     const imageKey = await uploadToS3(imageData);
     if (imageKey) {
       onCapture(imageKey); // Pass the imageUrl to the onCapture function
-      setUploadMessage("Image uploaded successfully");
 
       // Call PATCH API to update KYC with imageUrl
       const userId = localStorage.getItem("userId");
       try {
-        await axios.patch(
-          `https://trustflow-backend.onrender.com/v1/userAuth/updateKYC/${userId}`,
+        const isImageUpload = await axios.post(
+          `https://trustflow-backend.onrender.com/v1/image/processImage/${userId}`,
           { imageKey }
         );
-        console.log("KYC Updated successfully");
+
+        if (isImageUpload.success) {
+          setUploadMessage("Image uploaded successfully");
+          console.log("KYC Updated successfully");
+        } else {
+          setUploadMessage("The image is not Valid");
+        }
       } catch (error) {
         console.error("Error updating KYC:", error);
+        setUploadMessage("The image is not Valid");
       }
     } else {
       setUploadMessage("Failed to upload image");
@@ -89,7 +98,11 @@ const CameraComponent = ({ onCapture }) => {
     <div className="border border-gray-500 rounded-md p-4">
       <div className="flex flex-col justify-center">
         <div className="flex justify-center">
-          <video ref={videoRef} autoPlay muted className="w-72 h-auto" />
+          {capturedImage ? (
+            <img src={capturedImage} alt="Captured" className="w-72 h-auto" />
+          ) : (
+            <video ref={videoRef} autoPlay muted className="w-72 h-auto" />
+          )}
         </div>
         <div className="flex flex-row">
           <button
