@@ -1,16 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
-import { Inter } from "next/font/google";
 
-const inter = Inter({ subsets: ["latin"] });
-
-export default function KycPage() {
+// Define your KYC component here
+function KYCPage() {
   const router = useRouter();
 
-  // const [showSuccess, setShowSuccess] = useState(false);
   const [showError, setShowError] = useState(false);
-
   const [formData, setFormData] = useState({
     name: "",
     dob: "",
@@ -35,7 +31,7 @@ export default function KycPage() {
     const userId = localStorage.getItem("userId");
     try {
       const response = await axios.post(
-        `https://trustflow-backend.onrender.com/v1/userAuth/checkUserData/0001`,
+        `https://trustflow-backend.onrender.com/v1/userAuth/checkUserData/${userId}`,
         {
           username: formData.name,
           dateOfBirth: formData.dob,
@@ -45,11 +41,8 @@ export default function KycPage() {
       );
       console.log(response);
       if (response.data.success === true) {
-        // setShowSuccess(true);
-        setTimeout(() => {
-          setShowSuccess(false);
-          router.push("/user/photo");
-        }, 2000); // Close the success popup after 2 seconds and navigate to /user
+        localStorage.setItem("isKYC", true);
+        router.push("/user/photo");
       } else {
         setShowError(true);
       }
@@ -274,12 +267,6 @@ export default function KycPage() {
           </div>
         </section>
       </form>
-      {/* Success Popup */}
-      {/* {showSuccess && (
-        <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-green-200 p-4 rounded-md">
-          <p className="text-green-700"></p>
-        </div>
-      )} */}
       {/* Error Popup */}
       {showError && (
         <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-red-200 p-4 rounded-md">
@@ -290,4 +277,50 @@ export default function KycPage() {
       )}
     </div>
   );
+}
+
+// Define your KYC Done component here
+function KYCDone() {
+  return (
+    <div className="flex justify-center items-center h-screen">
+      <h1 className="text-3xl font-bold">KYC Done!</h1>
+    </div>
+  );
+}
+
+// Define your Unauth component here
+function UnauthComponent() {
+  return (
+    <div className="flex justify-center items-center h-screen">
+      <h1 className="text-3xl font-bold">Unauthorized Access</h1>
+    </div>
+  );
+}
+
+export default function KYCWrapper() {
+  const [userId, setUserId] = useState(null);
+  const [isKYC, setIsKYC] = useState(false);
+  const router = useRouter();
+
+  useEffect(() => {
+    const storedUserId = localStorage.getItem("userId");
+    const storedIsKYC = localStorage.getItem("isKYC");
+
+    if (storedUserId) {
+      setUserId(storedUserId);
+    }
+
+    if (storedIsKYC === "true") {
+      setIsKYC(true);
+    }
+  }, []);
+
+  // Logic to determine which component to render
+  if (!userId || userId === "undefined" || userId === "null") {
+    return <UnauthComponent />;
+  } else if (isKYC) {
+    return <KYCDone />;
+  } else {
+    return <KYCPage />;
+  }
 }
