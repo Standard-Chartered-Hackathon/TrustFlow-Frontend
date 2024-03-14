@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { logo } from "../assets";
+import { logo, accountnum, lock } from "../assets";
 import Credentials from "@/components/CredentialComponent";
 
 export default function Login() {
@@ -118,6 +118,20 @@ export default function Login() {
               <Link href="/" className="text-xs mt-2 hover:underline">
                 Forget Password?
               </Link>
+              <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+                <div className="flex items-center border border-gray-500 rounded-md font-poppins mt-6 px-4">
+                  <Image
+                    src={accountnum}
+                    alt="accountnum"
+                    className="h-4 w-4 mr-2"
+                  />
+                  <p>123456789123</p>
+                </div>
+                <div className="flex items-center border border-gray-500 rounded-md font-poppins mt-6 px-4">
+                  <Image src={lock} alt="password" className="h-4 w-4 mr-2" />
+                  <p>password1</p>
+                </div>
+              </div>
             </div>
           </form>
         </div>

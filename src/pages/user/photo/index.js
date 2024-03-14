@@ -119,6 +119,10 @@ function Livephoto() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log(localStorage.getItem("isImageValid"));
+    if (localStorage.getItem("isImageValid") === true) {
+      return alert("Image not matching with official document");
+    }
     const userId = localStorage.getItem("userId");
     try {
       const response = await axios.patch(
@@ -178,6 +182,7 @@ function Livephoto() {
           <div className="flex justify-center items-center">
             <button
               onClick={handleSubmit}
+              disabled={!localStorage.getItem("isImageValid")}
               className="px-4 sm:px-6 py-3 mt-6 font-poppins bg-blue shadow-md text-white hover:text-black rounded-lg focus:outline-none focus:ring focus:ring-blue-300"
             >
               Submit your KYC

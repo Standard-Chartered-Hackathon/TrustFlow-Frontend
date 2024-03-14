@@ -25,6 +25,8 @@ import correct from "./correct.svg";
 import incorrect from "./incorrect.svg";
 import correcticon from "./correcticon.svg";
 import incorrecticon from "./incorrecticon.svg";
+import accountnum from "./accountnum.svg";
+import lock from "./lock.svg";
 
 export {
   logo,
@@ -54,4 +56,6 @@ export {
   incorrect,
   correcticon,
   incorrecticon,
+  accountnum,
+  lock,
 };
