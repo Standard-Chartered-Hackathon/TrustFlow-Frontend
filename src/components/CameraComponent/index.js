@@ -1,6 +1,7 @@
 import React, { useRef, useState } from "react";
 import AWS from "aws-sdk";
 import { v4 as uuidv4 } from "uuid";
+import axios from "axios";
 
 const CameraComponent = ({ onCapture }) => {
   const videoRef = useRef(null);
@@ -35,10 +36,22 @@ const CameraComponent = ({ onCapture }) => {
     onCapture(imageData);
 
     // Call the function to upload the image to S3
-    const imageUrl = await uploadToS3(imageData);
-    if (imageUrl) {
-      onCapture(imageUrl); // Pass the imageUrl to the onCapture function
+    const imageKey = await uploadToS3(imageData);
+    if (imageKey) {
+      onCapture(imageKey); // Pass the imageUrl to the onCapture function
       setUploadMessage("Image uploaded successfully");
+
+      // Call PATCH API to update KYC with imageUrl
+      const userId = localStorage.getItem("userId");
+      try {
+        await axios.patch(
+          `https://trustflow-backend.onrender.com/v1/userAuth/updateKYC/${userId}`,
+          { imageKey }
+        );
+        console.log("KYC Updated successfully");
+      } catch (error) {
+        console.error("Error updating KYC:", error);
+      }
     } else {
       setUploadMessage("Failed to upload image");
     }
@@ -64,13 +77,14 @@ const CameraComponent = ({ onCapture }) => {
 
     try {
       const data = await s3.upload(params).promise();
-      console.log("File uploaded to S3:", data.key);
-      return data.key; // Return the S3 URL
+      console.log("File uploaded to S3:", data.Key);
+      return data.Key; // Return the S3 URL
     } catch (error) {
       console.error("Error uploading file to S3:", error);
       return null;
     }
   };
+
   return (
     <div className="border border-gray-300 rounded-md p-4">
       <div className="flex justify-center mb-4">
