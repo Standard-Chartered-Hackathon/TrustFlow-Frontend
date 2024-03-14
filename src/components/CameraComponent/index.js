@@ -71,7 +71,6 @@ const CameraComponent = ({ onCapture }) => {
       return null;
     }
   };
-
   return (
     <div className="border border-gray-300 rounded-md p-4">
       <div className="flex justify-center mb-4">
