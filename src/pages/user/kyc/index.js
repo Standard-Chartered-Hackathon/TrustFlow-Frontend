@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
+import UnAuth from "@/components/UnAuth";
+import KycDone from "@/components/KycCompleted";
 
 // Define your KYC component here
 function KYCPage() {
@@ -279,28 +281,9 @@ function KYCPage() {
   );
 }
 
-// Define your KYC Done component here
-function KYCDone() {
-  return (
-    <div className="flex justify-center items-center h-screen">
-      <h1 className="text-3xl font-bold">KYC Done!</h1>
-    </div>
-  );
-}
-
-// Define your Unauth component here
-function UnauthComponent() {
-  return (
-    <div className="flex justify-center items-center h-screen">
-      <h1 className="text-3xl font-bold">Unauthorized Access</h1>
-    </div>
-  );
-}
-
 export default function KYCWrapper() {
   const [userId, setUserId] = useState(null);
   const [isKYC, setIsKYC] = useState(false);
-  const router = useRouter();
 
   useEffect(() => {
     const storedUserId = localStorage.getItem("userId");
@@ -317,9 +300,9 @@ export default function KYCWrapper() {
 
   // Logic to determine which component to render
   if (!userId || userId === "undefined" || userId === "null") {
-    return <UnauthComponent />;
+    return <UnAuth />;
   } else if (isKYC) {
-    return <KYCDone />;
+    return <KycDone />;
   } else {
     return <KYCPage />;
   }
