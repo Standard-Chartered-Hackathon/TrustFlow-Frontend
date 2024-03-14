@@ -39,23 +39,26 @@ const CameraComponent = ({ onCapture }) => {
     onCapture(imageData);
 
     // Call the function to upload the image to S3
-    const imageKey = await uploadToS3(imageData);
-    if (imageKey) {
-      onCapture(imageKey); // Pass the imageUrl to the onCapture function
+    const imgKey = await uploadToS3(imageData);
+    if (imgKey) {
+      onCapture(imgKey); // Pass the imageUrl to the onCapture function
 
       // Call PATCH API to update KYC with imageUrl
       const userId = localStorage.getItem("userId");
       try {
         const isImageUpload = await axios.post(
           `https://trustflow-backend.onrender.com/v1/image/processImage/${userId}`,
-          { imageKey }
+          { imgKey }
         );
 
-        if (isImageUpload.success) {
+        console.log(isImageUpload);
+        if (isImageUpload.data.body.match) {
           setUploadMessage("Image uploaded successfully");
-          console.log("KYC Updated successfully");
+          console.log("KYC updated successfully");
+          localStorage.setItem("isImageValid", !isImageUpload.data.body.match);
         } else {
-          setUploadMessage("The image is not Valid");
+          setUploadMessage("Image not matching with official document");
+          localStorage.setItem("isImageValid", !isImageUpload.data.body.match);
         }
       } catch (error) {
         console.error("Error updating KYC:", error);
