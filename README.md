@@ -2,55 +2,58 @@
 
 <div>
 
-
-
-
 https://github.com/Standard-Chartered-Hackathon/TrustFlow-Frontend/assets/104360645/fd3b5133-1c80-4de9-9a39-45470d338e08
 
 
+# Online Video KYC
 
+## Description
+The current Know Your Customer (KYC) process predominantly relies on offline and manual procedures or non-interactive online methods. This project aims to revolutionize KYC by introducing an intuitive and self-sufficient online interactive process for video KYC. The envisioned system will capture the user's live photograph along with essential details such as name, date of birth, address, PAN card/Aadhaar, signature, income range, and type of employment in a conversational manner. Moreover, it emphasizes inclusivity, ensuring accessibility across languages and generations, irrespective of financial or educational disparities.
 
+## Solution Overview
+The proposed solution leverages advanced technologies to streamline the KYC process. Using a combination of frontend and backend technologies, the platform ensures seamless user interaction and robust data management.
 
+## Technologies Used
+
+### Frontend
+- **Next.js:** A React framework for building efficient and scalable web applications.
+- **Tailwind CSS:** A utility-first CSS framework for designing custom user interfaces with ease.
+
+### Backend
+- **Node.js:** A runtime environment for executing JavaScript code on the server side.
+- **Express.js:** A web application framework for Node.js, providing a robust set of features for building APIs and web servers.
+- **Flask:** A lightweight Python web framework for building web applications and APIs.
+
+### Infrastructure
+- **Amazon EC2:** Provides scalable computing capacity in the cloud, facilitating the deployment of backend services.
+- **Amazon S3 Bucket:** Offers secure, durable, and scalable object storage for storing user data and documents securely.
+
+### Database
+- **MongoDB:** A NoSQL database that provides flexibility and scalability for storing and managing user data efficiently.
+
+### Image Recognition
+- **AWS Image Recognition:** Utilized to match the image of official documents with the live photograph captured during the video KYC process.
+
+## Verification Process
+- Aadhaar and PAN card numbers are used to access users' official document images stored securely.
+- The live photograph captured during the video KYC process is compared with the stored images using AWS Image Recognition to verify the authenticity of the KYC.
+
+## Conclusion
+By incorporating cutting-edge technologies and a user-centric approach, the proposed online video KYC solution aims to enhance the efficiency, security, and inclusivity of the KYC process, thereby addressing the evolving needs of the digital landscape while ensuring compliance with regulatory requirements.
 
 <br>
-
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
 
 First, run the development server:
 
 ```bash
-npm run dev
-# or
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+### Deployed at [Trustflow](https://trustflow-j6nt.vercel.app/)
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
