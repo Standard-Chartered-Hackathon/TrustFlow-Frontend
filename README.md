@@ -1,31 +1,36 @@
-```markdown
-# Online Video KYC
+# Trustflow Online KYC Website
 
-![Project Video](https://bmf-bucket.s3.ap-south-1.amazonaws.com/InShot_20240314_185517507.mp4)
+<div>
 
-## Problem Statement
 
-Currently, Know Your Customer (KYC) is largely an offline and manual process or non-interactive online process. The goal is to create an online interactive process to conduct video KYC, which is intuitive and self-sufficient. The KYC process should capture the user’s live photograph and their basic details like name, date of birth (DOB), address, PAN card / Aadhaar, signature, income range, and type of employment in a conversational manner. This tool should be highly inclusive and have high reach across languages and generations, irrespective of financial and education gap.
 
-## Tool Description
+<br>
 
-The tool facilitates an intuitive and self-sufficient online interactive process for conducting video KYC. It captures the user’s live photograph and basic details in a conversational manner. The process includes capturing details such as name, DOB, address, PAN card / Aadhaar, signature, income range, and type of employment. The tool is designed to be highly inclusive and accessible across languages and generations, bridging the gap in financial and educational backgrounds.
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
 
-1. Clone this repository.
-2. Run the development server:
-   ```bash
-   npm run dev
-   # or
-   yarn dev
-   # or
-   pnpm dev
-   # or
-   bun dev
-   ```
-3. Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-4. You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+First, run the development server:
+
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
+```
+
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+
+[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+
+The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+
+This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
 ## Learn More
 
@@ -41,5 +46,3 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
-```
-This README provides an overview of the Online Video KYC project, including the problem statement, tool description, how to get started, additional learning resources, and deployment information.
